@@ -10,6 +10,7 @@ function start() {
             urlCatalog: API + '/catalogData.json',
             urlBasket: API + '/getBasket.json',
             showBasket: true,
+            searchLine: ''
         },
         methods: {
             // методы
@@ -17,6 +18,22 @@ function start() {
                 return fetch(url).then(d => d.json());
             },
 
+            // поиск по сайту
+            filterGoods() {
+                console.log(this.searchLine);
+                if (this.searchLine != ''){
+                    let items = [];
+                    this.itemsCatalog.forEach(el=>{
+                        if (el.product_name == this.searchLine)
+                            items.push(el);
+                    });
+                     return  items;
+                }
+                return this.itemsCatalog;
+            },
+
+
+            // Добавление товара в корзину
             addToBasket(id_product) {
                 let find = this.itemsBasket.find(el => el.id_product == id_product);
                 if (find == undefined) {
@@ -35,9 +52,10 @@ function start() {
                     find.quantity++;
                 }
 
-               console.log (find)
+               //console.log (find)
             },
 
+            // Удаление товара из корзины
             removeFromBasket(id_product) {
                 let find = this.itemsBasket.find(el => el.id_product == id_product);
                 if (find.quantity < 2){
@@ -68,7 +86,7 @@ function start() {
                     this.itemsCatalog = data;
                 })
                 .finally(() => {
-                    console.log(this.itemsCatalog);
+                    //console.log(this.itemsCatalog);
                 });
             this.get(this.urlBasket)
                 .then(data => {
