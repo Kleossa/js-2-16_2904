@@ -4,7 +4,7 @@ let fs = require('fs');
 let server = express();
 server.use(express.json());
 
-server.get('/catalog', (req, res) =>{
+server.get('/catalog', (req, res) => {
     fs.readFile('./server/db/catalog.json', 'utf-8', (err, data) => {
         if (!err) {
             res.send(data);
@@ -12,21 +12,27 @@ server.get('/catalog', (req, res) =>{
     })
 });
 
- server.get('/basket', (req, res) =>{
-     fs.readFile('./server/db/basket.json', 'utf-8', (err, data) => {
+server.get('/basket', (req, res) => {
+    fs.readFile('./server/db/basket.json', 'utf-8', (err, data) => {
         if (!err) {
             res.send(data);
         }
     })
- });
+});
 
-server.post('/basket', (req, res) =>{
+server.post('/basket', (req, res) => {
     console.log(1);
-
+    // console.log(reg);
+    // console.log(res);
+    // console.log(2);
 });
 
 
-// server.put();
+server.put('/basket', (req, res) => {
+    console.log(1);
+    console.log(reg.body);
+    console.log(2);
+});
 // server.delete();
 
 

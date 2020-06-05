@@ -40,7 +40,14 @@ export default {
             });
 
         },
-        put() {
+        put(url, item) {
+            return fetch(url, {
+                method: 'PUT',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(item)
+            });
 
         },
         delete() {

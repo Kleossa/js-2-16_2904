@@ -58,7 +58,8 @@
                         }
                     });
                 } else {
-                    this.$parent.put({})
+                    console.log(find.id_product);
+                    this.$parent.put(this.url, find.id_product)
                         .then(res => {
                         if (res) {
                             find.quantity++;
